@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Management System</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input { margin: 5px; padding: 8px; width: 300px; }
+        button { padding: 10px; }
+        .card { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Quiz Management System</h1>
+
+<form action="/save" method="post" th:object="${question}">
+    <input type="text" th:field="*{questionText}" placeholder="Question" required><br>
+    <input type="text" th:field="*{optionA}" placeholder="Option A"><br>
+    <input type="text" th:field="*{optionB}" placeholder="Option B"><br>
+    <input type="text" th:field="*{optionC}" placeholder="Option C"><br>
+    <input type="text" th:field="*{optionD}" placeholder="Option D"><br>
+    <input type="text" th:field="*{correctAnswer}" placeholder="Correct Answer"><br>
+    <button type="submit">Save Question</button>
+</form>
+
+<h2>Questions</h2>
+
+<div th:each="q : ${questions}" class="card">
+    <h3 th:text="${q.questionText}"></h3>
+    <p>A: <span th:text="${q.optionA}"></span></p>
+    <p>B: <span th:text="${q.optionB}"></span></p>
+    <p>C: <span th:text="${q.optionC}"></span></p>
+    <p>D: <span th:text="${q.optionD}"></span></p>
+    <strong>Correct: <span th:text="${q.correctAnswer}"></span></strong>
+</div>
+
+</body>
+</html>
